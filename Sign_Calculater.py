@@ -20,14 +20,17 @@ class Sign_calculater():
         self.sort_by_key = True
         self.reverse_or_not = False
         # secret key
-        self.secret_key_str = "ojxdpHu7dhdljaUw1ubf"#"ojxdpHu7dhdljaUw1ubf"
-        #self.secret_key_str = "520f51f92694446c95a2124c1deb416a"  # ks=*Photos$@w7c  注意包含连接符
+        self.secret_key_str = "ojxdpHu7dhdljaUw1ubf"
+        self.secret_key_str_name = "ks"
+        #self.secret_key_str = "520f51f92694446c95a2124c1deb416a"  # 
         self.connector = ":"
         self.add_to_end = True
 
     def sort(self, para_dict): #这里传入的para_dict是 collections中的有序字典。
         # 排除不需要的参数
         para_dict_copy = para_dict.copy()
+        if self.add_to_end is False: # same as common parameter
+            para_dict_copy[self.secret_key_str_name] = self.secret_key_str
         for item in para_dict_copy.iteritems():
             if item[0] in self.exclude_para_list:
                 del(para_dict[item[0]])
